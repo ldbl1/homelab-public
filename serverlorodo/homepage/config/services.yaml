@@ -1,0 +1,174 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/services/
+
+- Notificaciones:
+    - ntfy:
+        icon: ntfy.png
+        href: https://ntfy.sh/ntfy-topic  #<-- CAMBIAR
+        description: Última notificación recibida
+        widget:
+          type: ntfy
+          url: https://ntfy.sh
+          topic: ntfy-topic #<-- CAMBIAR
+          fields: ["title", "message", "priority", "lastReceived"]
+
+- Casa:
+    - Immich:
+        icon: immich
+        href: IMMICH_URL #<-- CAMBIAR
+        description: Gestión de fotos y vídeos
+        container: immich_server
+        widget:
+            type: immich
+            url: IMMICH_URL #<-- CAMBIAR
+            key: IMMICH_KEY #<-- CAMBIAR
+            version: 2 # optional, default is 1
+
+    - Homebox:
+        icon: homebox
+        href: HOMEBOX_URL #<-- CAMBIAR
+        description: Inventario del hogar
+        container: homebox
+        widget:
+          type: homebox
+          url: HOMEBOX_URL #<-- CAMBIAR
+          username: email@admin.com #<-- CAMBIAR
+          password: password #<-- CAMBIAR
+    - RomM:
+        icon: romm
+        href: ROMM_URL #<-- CAMBIAR
+        description: Gestor y emulador de ROMs
+        container: romm
+        widget:
+          type: romm
+          url: ROMM_URL #<-- CAMBIAR
+          fields: ["platforms", "totalRoms", "saves", "states"]
+
+    - Calibre-Web:
+        icon: calibre-web
+        href: CWA_URL #<-- CAMBIAR
+        description: Biblioteca de libros
+        container: calibre-web-automated
+        widget:
+            type: calibreweb
+            url: CWA_URL #<-- CAMBIAR
+            username: ADMIN_USERNAME #<-- CAMBIAR
+            password: ADMIN_PASSWORD #<-- CAMBIAR
+
+    - Navidrome:
+        icon: navidrome
+        href: NAVIDROME_URL #<-- CAMBIAR
+        description: Servidor de música personal
+        container: navidrome-navidrome-1
+
+    - ActualBudget:
+        icon: si-actualbudget
+        href: ACTUALBUDGET_URL #<-- CAMBIAR
+        description: Aplicación para gestión de presupuestos
+        container: actual-server
+
+    - Jellyfin:
+        icon: jellyfin
+        href: JELLYFIN_URL #<-- CAMBIAR
+        description: Vídeos caseros y películas
+        container: jellyfin
+
+    - Obsidian:
+        icon: obsidian
+        description: SIN ENLACE SERVICIO DE SINCRONIZACIÓN - Diario y gestión personal
+        container: obsidian-couchdb
+
+- Descargas y automatización:
+    - Downtify:
+        icon: downtify
+        href: DOWNTIFY_URL #<-- CAMBIAR
+        description: Descarga de música
+        container: downtify
+
+    - n8n:
+        icon: n8n
+        href: N8N_URL #<-- CAMBIAR
+        description: Automatización del servidor
+        container: n8n
+
+- 3D:
+    - thingport:
+        icon: thingport
+        href: THINGPORT_URL #<-- CAMBIAR
+        description: Organización de modelos 3D
+        container: thingport-backend
+
+    - spoolman:
+        icon: spoolman
+        href: SPoolman_URL #<-- CAMBIAR
+        description: Inventario de filamento 3D
+        container: spoolman
+
+- Administración serverlorodo:
+    - Dockhand:
+        icon: dockhand
+        href: DOCKHAND_URL #<-- CAMBIAR
+        description: Gestión Docker
+
+    - Nginx Proxy Manager:
+        icon: nginx-proxy-manager.png
+        href: NGINX_PROXY_MANAGER_URL #<-- CAMBIAR
+        description: Proxy inverso y certificados SSL
+        container: nginx-proxy-manager
+        widget:
+            type: npm
+            url: NGINX_PROXY_MANAGER_URL #<-- CAMBIAR
+            username: email@admin.com #<-- CAMBIAR
+            password: password #<-- CAMBIAR
+
+    - Beszel:
+        icon: beszel
+        href: BESZEL_URL #<-- CAMBIAR
+        description: Monitorización del servidor principal
+        container: beszel
+        widget:
+            type: beszel
+            url: BESZEL_URL #<-- CAMBIAR
+            # Si en el Hub de Beszel tienes credenciales:
+            username: admin@email.com #<-- CAMBIAR
+            password: adminpassword #<-- CAMBIAR
+            version: 2
+            
+    - Uptime Kuma: 
+        icon: uptime-kuma
+        href: UPTIME_KUMA_URL #<-- CAMBIAR
+        description: Control de servicios
+        container: uptime-kuma
+        widget:
+            type: uptimekuma
+            url: UPTIME_KUMA_URL #<-- CAMBIAR
+            slug: serverlorodo
+
+    - Cockpit:
+        icon: cockpit
+        href: cockpit_url #<-- CAMBIAR
+        description: Servidor serverlorodo
+
+- Administración pilorodo:
+    - pihole:
+        icon: pi-hole
+        href: PIHOLE_URL #<-- CAMBIAR
+        description: Monitorización del sistema
+        widget:
+            type: pihole
+            url: PIHOLE_URL #<-- CAMBIAR
+            version: 6 # required if running v6 or higher, defaults to 5
+            key: key_pihole #<-- CAMBIAR
+
+    - Cockpit:
+        icon: cockpit
+        href: cockpit_url_pilorodo #<-- CAMBIAR
+        description: Servidor web / Proxy en Raspberry Pi
+
+- Documentación:
+    - bookstack:
+        icon: bookstack
+        href: BOOKSTACK_URL #<-- CAMBIAR
+        description: Gestor de conocimiento
+        container: bookstack

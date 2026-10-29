@@ -1,0 +1,50 @@
+services:
+  n8n:
+    image: n8n-n8n
+    build:
+      context: /home/lorodo/homelab/n8n
+      dockerfile: Dockerfile
+      pull: true
+    pull_policy: build
+    container_name: n8n
+    env_file:
+      - /home/lorodo/homelab/n8n/.env
+    environment:
+      - WEBHOOK_URL=http://n8n.home/
+      - N8N_EDITOR_BASE_URL=http://n8n.home/
+      - N8N_HOST=n8n.home
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - GENERIC_TIMEZONE=Europe/Madrid
+      - N8N_SECURE_COOKIE=false
+      - CHECK_TIMEOUT_MS=5000
+      - NTFY_URL=https://ntfy.sh/ntfy-topic #<-- CAMBIAR
+      - NODES_EXCLUDE=[]
+      - TZ=Europe/Madrid
+    labels:
+      com.centurylinklabs.watchtower.enable: 'false'
+    ports:
+      - '5678:5678'
+    volumes:
+      - /home/lorodo/homelab/n8n/scripts:/scripts:ro
+      - /mnt/raid1:/mnt/raid1:ro
+      - /home/lorodo/homelab/n8n/data:/home/node/.n8n
+      - /proc/mdstat:/host/proc/mdstat:ro
+      - /mnt/raid1/descargas/downty:/mnt/raid1/descargas/downty
+      - /mnt/raid1/media/musica:/mnt/raid1/media/musica
+    restart: unless-stopped
+    networks:
+      - n8n_default
+    dns:
+      - 192.168.1.100
+      - 8.8.8.8
+      - 1.1.1.1
+    extra_hosts:
+      - n8n.home:192.168.1.100
+      - torrent.home:192.168.1.100
+    user: node
+    working_dir: /home/node
+
+networks:
+  n8n_default:
+    external: true

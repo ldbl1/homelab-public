@@ -1,0 +1,28 @@
+services:
+  nextcloud-db:
+    image: mariadb:${MARIADB_VERSION}@${MARIADB_DIGEST}
+    container_name: nextcloud-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextcloud
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ${DATA_ROOT}/nextcloud/db:/var/lib/mysql
+
+  nextcloud:
+    image: nextcloud:${NEXTCLOUD_VERSION}@${NEXTCLOUD_DIGEST}
+    container_name: nextcloud
+    restart: unless-stopped
+    depends_on:
+      - nextcloud-db
+    ports:
+      - "8080:80"
+    environment:
+      MYSQL_HOST: nextcloud-db
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextcloud
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ${DATA_ROOT}/nextcloud/data:/var/www/html

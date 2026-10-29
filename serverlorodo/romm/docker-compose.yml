@@ -1,0 +1,54 @@
+services:
+    romm:
+        image: rommapp/romm:latest
+        container_name: romm
+        restart: unless-stopped
+        environment:
+            - DB_HOST=romm-db
+            - DB_NAME=romm
+            - DB_USER=romm-user
+            - DB_PASSWD=${DB_PASSWD:-CHANGE_ME}
+            - ROMM_AUTH_SECRET_KEY=${ROMM_AUTH_SECRET_KEY:-CHANGE_ME}
+            - REDIS_HOST=romm-redis
+        volumes:
+            - /mnt/raid1/romm/resources:/romm/resources
+            - /mnt/raid1/media/games:/romm/library
+            - /mnt/raid1/romm/assets:/romm/assets
+            - /mnt/raid1/romm/config:/romm/config
+        ports:
+            - 3355:8080
+        depends_on:
+            romm-db:
+                condition: service_healthy
+            romm-redis:
+                condition: service_started
+
+    romm-redis:
+        image: redis:alpine
+        container_name: romm-redis
+        restart: unless-stopped
+        volumes:
+            - romm_redis_data:/data
+
+    romm-db:
+        image: mariadb:latest
+        container_name: romm-db
+        restart: unless-stopped
+        environment:
+            - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD:-CHANGE_ME}
+            - MARIADB_DATABASE=romm
+            - MARIADB_USER=romm-user
+            - MARIADB_PASSWORD=${MARIADB_PASSWORD:-CHANGE_ME}
+        volumes:
+            - mysql_data:/var/lib/mysql
+        healthcheck:
+            test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+            start_period: 30s
+            start_interval: 10s
+            interval: 10s
+            timeout: 5s
+            retries: 5
+
+volumes:
+    mysql_data:
+    romm_redis_data:

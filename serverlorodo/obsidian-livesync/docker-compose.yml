@@ -1,0 +1,14 @@
+name: obsidian-livesync
+
+services:
+  couchdb:
+    image: couchdb:3.3
+    container_name: obsidian-couchdb
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "5984:5984"
+    volumes:
+      - /mnt/raid1/obsidian-livesync/data:/opt/couchdb/data
+      - ./local.ini:/opt/couchdb/etc/local.d/local.ini

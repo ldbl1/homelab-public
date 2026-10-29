@@ -1,0 +1,55 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/settings/
+title: Mi server
+description: En esta página puedo navegar por todos los servicios de mi server y hacer cualquier tipo de configuración
+
+theme: dark
+color: slate
+fullWidth: true
+useEqualHeights: true
+headerStyle: boxedWidgets
+language: es
+
+quicklaunch:
+  searchDescriptions: true
+  hideInternetSearch: true
+  showSearchSuggestions: true
+  hideVisitURL: true
+  provider: google
+
+statusStyle: "dot"
+
+disableIndexing: true
+
+
+layout:
+  Notificaciones:
+    style: row
+    columns: 1
+
+  Casa:
+    style: row
+    columns: 4     
+
+  Descargas y automatización:
+    style: row
+    columns: 2
+
+  3D:
+    style: row
+    columns: 2
+
+  Documentación:
+    style: row
+    columns: 1
+
+  Administración serverlorodo:
+    initiallyCollapsed: true
+    style: row
+    columns: 2
+
+  Administración pilorodo:
+    initiallyCollapsed: true
+    style: row
+    columns: 2

@@ -1,0 +1,18 @@
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:${HOMEPAGE_VERSION}
+    container_name: homepage
+    restart: unless-stopped
+    dns:
+      - 192.168.1.2
+    user: root
+    ports:
+      - "3000:3000"
+    volumes:
+      - ${DATA_ROOT}/homepage/config:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /sys:/sys:ro
+      - /:/host-root:ro
+      - ${DATA_ROOT}:/host-raid1:ro
+    environment:
+      - HOMEPAGE_ALLOWED_HOSTS=*

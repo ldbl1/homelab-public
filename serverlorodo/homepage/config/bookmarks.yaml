@@ -1,0 +1,40 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/bookmarks
+
+- Fiestas:
+    - Github:
+        - abbr: GH
+          href: https://github.com/
+    - Printables:
+      - abbr: PT
+        href: https://www.printables.com/
+    - Cyberspace:
+      - abbr: CS
+        href: https://cyberspace.online/
+    - TinkerCAD:
+      - abbr: TK
+        href: https://www.tinkercad.com/dashboard
+
+- Social:
+    - Reddit:
+      - abbr: RE
+        href: https://reddit.com/
+    - Gmail:
+      - abbr: GM
+        href: https://mail.google.com/
+    - WhatsApp:
+      - abbr: WA
+        href: https://web.whatsapp.com/
+    - Prime Gaming:
+      - abbr: PG
+        href: https://luna.amazon.es/claims/home?g=s
+
+
+- Administration:
+    - Router:
+      - abbr: RT
+        href: http://192.168.1.1/
+    - Tailscale:
+      - abbr: TS
+        href: https://login.tailscale.com/login?next_url=%2Fwelcome

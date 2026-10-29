@@ -1,0 +1,12 @@
+services:
+  downtify:
+    image: ghcr.io/henriquesebastiao/downtify:${DOWNTIFY_VERSION}
+    container_name: downtify
+    ports:
+      - "3333:30321"
+    environment:
+      - DOWNTIFY_PORT=30321
+    volumes:
+      - ${DATA_ROOT}/descargas/downty:/downloads
+      - ./data:/data
+    restart: unless-stopped

@@ -1,0 +1,15 @@
+services:
+  spoolman:
+    image: ghcr.io/donkie/spoolman:latest
+    container_name: spoolman
+
+    environment:
+      TZ: "Europe/Madrid"
+
+    volumes:
+      - ./data:/home/app/.local/share/spoolman
+
+    ports:
+      - "7912:8000"
+
+    restart: unless-stopped

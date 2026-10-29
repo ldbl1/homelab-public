@@ -1,0 +1,39 @@
+- resources:
+    label: SERVERLORODO
+    cpu: true
+    memory: true
+    disk:
+      - /host-root
+      - /host-raid1
+    uptime: true
+    expanded: true
+    cputemp: true
+
+- openmeteo:
+    label: El Viso de San Juan
+    latitude: 40.14154
+    longitude: -3.91817
+    timezone: Europe/Madrid
+    units: metric
+    cache: 10
+    format:
+      maximumFractionDigits: 1
+
+- glances:
+    label: PILORODO
+    url: PILORODO_URL:61208 #<-- CAMBIAR
+    version: 4
+    cpu: true
+    mem: true
+    disk: /
+    uptime: true
+    cputemp: true
+    expanded: true
+
+- datetime:
+    text_size: xl
+    locale: es-ES
+    format:
+      timeStyle: short
+      dateStyle: short
+      hourCycle: h23

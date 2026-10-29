@@ -1,0 +1,29 @@
+services:
+  hawser:
+    image: ghcr.io/finsys/hawser:latest
+    container_name: hawser
+    restart: unless-stopped
+    ports:
+      - "2377:2376"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /home/pilorodo/docker/hawser/stacks:/home/pilorodo/docker/hawser/stacks
+    environment:
+      - TOKEN=HAWSER-TOKEN
+      - STACKS_DIR=/home/pilorodo/docker/hawser/stacks
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+        reservations:
+          memory: 16M
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:2376/_hawser/health || exit 1"]
+      interval: 120s
+      timeout: 5s
+      retries: 3
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "2"

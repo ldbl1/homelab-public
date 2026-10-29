@@ -1,0 +1,16 @@
+services:
+  homebox:
+    image: ghcr.io/sysadminsmedia/homebox:latest
+    container_name: homebox
+    restart: unless-stopped
+    environment:
+      - HBOX_MODE=production
+      - HBOX_STORAGE_DATA=/data
+      - HBOX_STORAGE_SQLITE_PATH=/data/homebox.db
+      - HBOX_OPTIONS_ALLOW_REGISTRATION=false
+      - HBOX_AUTH_API_KEY_PEPPER=${HBOX_AUTH_API_KEY_PEPPER:-CHANGE_ME}
+      - TZ=Europe/Madrid
+    volumes:
+      - /mnt/raid1/homebox:/data
+    ports:
+      - "7745:7745"

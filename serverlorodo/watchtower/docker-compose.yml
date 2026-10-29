@@ -1,0 +1,22 @@
+services:
+  watchtower:
+    image: containrrr/watchtower:1.7.1
+    container_name: watchtower
+    hostname: serverlorodo
+    restart: unless-stopped
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+    environment:
+      TZ: ${TZ}
+      DOCKER_API_VERSION: ${DOCKER_API_VERSION}
+      WATCHTOWER_SCHEDULE: ${WATCHTOWER_SCHEDULE}
+      WATCHTOWER_MONITOR_ONLY: ${WATCHTOWER_MONITOR_ONLY}
+      WATCHTOWER_NO_STARTUP_MESSAGE: ${WATCHTOWER_NO_STARTUP_MESSAGE}
+      WATCHTOWER_NOTIFICATIONS_HOSTNAME: serverlorodo
+      WATCHTOWER_NOTIFICATION_URL: ${WATCHTOWER_NOTIFICATION_URL}
+      WATCHTOWER_NOTIFICATION_SKIP_TITLE: ${WATCHTOWER_NOTIFICATION_SKIP_TITLE}
+      WATCHTOWER_NOTIFICATION_TEMPLATE: |-
+        {{range .}}{{if .Message}}- {{.Message}}
+        {{end}}{{end}}

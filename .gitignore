@@ -1,0 +1,74 @@
+# Variables de entorno y secretos
+.env
+**/.env
+.env.*
+**/.env.*
+!.env.example
+!**/.env.example
+
+# Certificados, claves privadas y credenciales sueltas
+*.pem
+*.key
+*.crt
+*.cer
+*.pfx
+*.p12
+*secret*
+*token*
+*credentials*
+!*.example
+
+# Bases de datos y dumps
+*.db
+*.sqlite
+*.sqlite3
+*.db-shm
+*.db-wal
+*.sql
+*.dump
+
+# Carpetas de volúmenes persistentes (por si se crean en local al probar un compose)
+data/
+**/data/
+db_data/
+**/db_data/
+pgdata/
+**/pgdata/
+mysql/
+**/mysql/
+mariadb/
+**/mariadb/
+redis/
+**/redis/
+uploads/
+**/uploads/
+library/
+**/library/
+letsencrypt/
+**/letsencrypt/
+
+# Copias de seguridad y comprimidos
+*.bak
+*.backup
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.7z
+*.rar
+
+# Logs y archivos temporales
+*.log
+logs/
+**/logs/
+tmp/
+temp/
+*.swp
+*~
+
+# Archivos de sistema y editores (Windows / Linux / VS Code)
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/

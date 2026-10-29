@@ -1,0 +1,1 @@
+cd ~/homelab/watchtower && docker compose run --rm watchtower --run-once --monitor-only

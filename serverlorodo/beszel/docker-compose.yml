@@ -1,0 +1,34 @@
+services:
+  beszel-agent:
+    image: henrygd/beszel-agent:${BESZEL_AGENT_VERSION}
+    container_name: beszel-agent
+    restart: unless-stopped
+    network_mode: host
+    privileged: true
+
+    volumes:
+      - ./agent-data:/var/lib/beszel-agent
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ${DATA_ROOT}/.beszel:/extra-filesystems/md127__RAID1:ro
+      - /:/extra-filesystems/root:ro
+
+    #los dos discos que están en RAID1, para que Beszel pueda monitorizarlos
+    devices:
+      - /dev/sdb:/dev/sdb
+      - /dev/sdc:/dev/sdc
+
+    environment:
+      LISTEN: 45876
+      KEY: '${BESZEL_KEY:-CHANGE_ME}'
+      TOKEN: ${BESZEL_TOKEN:-CHANGE_ME}
+      HUB_URL: "http://${SERVER_IP}:8091"
+      FILESYSTEM: /extra-filesystems/root
+
+  beszel:
+    image: henrygd/beszel:${BESZEL_VERSION}
+    container_name: beszel
+    restart: unless-stopped
+    ports:
+      - "8091:8090"
+    volumes:
+      - ${HOME_DIR}/homelab/beszel/data:/beszel_data
